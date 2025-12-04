@@ -92,7 +92,7 @@ if page == "📁 Carga de Datos":
     st.markdown('<h2 class="section-header">📁 Carga de Archivos</h2>', unsafe_allow_html=True)
     
     # Crear columnas para la carga de archivos
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.subheader("📄 Archivo .RPT de Muestra")
