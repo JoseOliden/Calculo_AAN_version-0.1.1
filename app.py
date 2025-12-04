@@ -127,12 +127,12 @@ if page == "📁 Carga de Datos":
     if db_file:
         st.success(f"✅ Base de datos cargada")
     
-    # Archivo de referencia según geometría
-    st.subheader("📚 Archivos de Referencia")
-    ref_type = st.radio("Seleccionar tipo de referencia:", ["Corta (C)", "Media (M)", "Larga (L)"])
+    # Librería de Nucléidos
+    st.subheader("📚 Librería de Nucléidos")
+    ref_type = st.radio("Seleccionar tipo de nucléidos:", ["Corta (C)", "Media (M)", "Larga (L)"])
     ref_files = st.file_uploader(f"Subir archivo RDN_{ref_type[0]}.xlsx", type=['xlsx'], key="reference")
     if ref_files:
-        st.success(f"✅ Archivo de referencia cargado")
+        st.success(f"✅ Archivo cargado")
 
 # ============================================
 # SECCIÓN 2: CONFIGURACIÓN
