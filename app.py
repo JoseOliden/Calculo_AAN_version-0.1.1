@@ -110,6 +110,12 @@ if page == "📁 Carga de Datos":
             st.success(f"✅ {k0s_file.name} cargado")
     
     with col3:
+        st.subheader("📄 Archivo .RPT de Au (Comparador)")
+        rpt_au_file = st.file_uploader("Subir archivo .RPT de Au", type=['RPT', 'RPT'], key="rpt_au")
+        if rpt_au_file:
+            st.success(f"✅ {rpt_au_file.name} cargado")
+
+    with col4:
         st.subheader("📄 Archivo .k0s de Au (Comparador)")
         k0s_au_file = st.file_uploader("Subir archivo .k0s de Au", type=['k0s', 'K0S'], key="k0s_au")
         if k0s_au_file:
