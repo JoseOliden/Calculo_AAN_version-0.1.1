@@ -83,8 +83,8 @@ if page == "📁 Carga de Datos":
                 df_resultado = procesar_RPT(rpt_file)
                 st.dataframe(df_resultado)
             # Leer y mostrar vista previa
-            content = rpt_file.getvalue().decode('latin-1')
-            st.text_area("Vista previa (primeras 20 líneas):", value='\n'.join(content.split('\n')[:20]), height=200)
+            # content = rpt_file.getvalue().decode('latin-1')
+            # st.text_area("Vista previa (primeras 20 líneas):", value='\n'.join(content.split('\n')[:20]), height=200)
     
     with col2:
         st.subheader("📄 Archivo .k0s de Muestra")
