@@ -79,7 +79,9 @@ if page == "📁 Carga de Datos":
         rpt_file = st.file_uploader("Subir archivo .RPT", type=['rpt', 'RPT'], key="rpt_sample")
         if rpt_file:
             st.success(f"✅ {rpt_file.name} cargado")
-            df_tab = procesar_RPT(rpt_file)
+            if rpt_file:
+                df_resultado = procesar_RPT(rpt_file)
+                st.dataframe(df_resultado)
             # Leer y mostrar vista previa
             content = rpt_file.getvalue().decode('latin-1')
             st.text_area("Vista previa (primeras 20 líneas):", value='\n'.join(content.split('\n')[:20]), height=200)
