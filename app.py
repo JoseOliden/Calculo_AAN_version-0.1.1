@@ -120,9 +120,7 @@ if page == "📁 Carga de Datos":
             st.write(f"**Hora de medición:** {hora_au}")
             st.write(f"**Tiempo vivo (s):** {t_vivo_au}")
             st.write(f"**Tiempo real (s):** {t_real_au}")
-            
-            st.write("Actualiza")
-    
+                
     col21, col22 = st.columns(2)
 
     with col21:
