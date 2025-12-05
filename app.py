@@ -91,6 +91,13 @@ if page == "📁 Carga de Datos":
         k0s_file = st.file_uploader("Subir archivo .k0s", type=['k0s', 'K0S'], key="k0s_sample")
         if k0s_file:
             st.success(f"✅ {k0s_file.name} cargado")
+            if rpt_file:
+                fecha, hora, t_real, t_vivo = extraer_DATE_MEAS_TIM(rpt_file)
+                st.subheader("📌 Datos extraídos del archivo")
+                st.write(f"**Fecha de medición:** {fecha}")
+                st.write(f"**Hora de medición:** {hora}")
+                st.write(f"**Tiempo real (s):** {t_real}")
+                st.write(f"**Tiempo vivo (s):** {t_vivo}")
     
     with col3:
         st.subheader("📄 Archivo .RPT de Au (Comparador)")
