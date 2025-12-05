@@ -60,7 +60,7 @@ def procesar_RPT(rpt_file):
 
     # 11. Separar columnas y asignar nombres
     # primera columna
-    df_tipo["Tipo"] = df["linea"].str[:1]
+    df_tipo = df["linea"].str[:1]
     df_tipo.columns = ["Tipo"]
     # demas columnas
     df_demas["sin_primero"] = df["linea"].str[1:]
