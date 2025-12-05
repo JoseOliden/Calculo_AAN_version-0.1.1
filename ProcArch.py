@@ -58,16 +58,20 @@ def procesar_RPT(rpt_file):
     # 10. Quitar 1 espacio inicial (si hay) y todos los finales
     df = df.applymap(limpiar)
 
-    # 11. Separar columnas
-    df_tab = df["linea"].str.split(r"\s+", expand=True)
-
-    # 12. Asignar nombres de columnas
-    df_tab.columns = [
-        "Tipo", "Peak No.", "ROI Start", "ROI End", "Peak Centroid",
+    # 11. Separar columnas y asignar nombres
+    # primera columna
+    df_tipo["Tipo"] = df["linea"].str[:1]
+    df_tipo.columns = ["Tipo"]
+    # demas columnas
+    df_demas["sin_primero"] = df["linea"].str[1:]
+    df_demas_tab = df_demas["linea"].str.split(r"\s+", expand=True)
+    df_demas_tab.columns = ["Peak No.", "ROI Start", "ROI End", "Peak Centroid",
         "Energy (keV)", "Net Peak Area", "Net Peak Uncert",
         "Continuum Counts", "Tentative Nuclide"
     ]
-
+    
+    # 12. Unir df
+    df_tab = pd.concat([df_tipo, df_demas_tab], axis=1)
     st.success("Archivo procesado correctamente 🚀")
     
     return df_tab
