@@ -86,7 +86,8 @@ def Selecion_Nucleidos_Au(df_rpt_Au,df_Nucleidos, df_database):
     tol_Au = float(1.0)
     df_rpt_Au["Energy (keV)"] = pd.to_numeric(df_rpt_Au["Energy (keV)"], errors="coerce")
     df_energy_Au = df_rpt_Au[(df_rpt_Au["Tentative Nuclide"] == "AU-198") & ((df_rpt_Au["Energy (keV)"] > En_Au - tol_Au) | (df_rpt_Au["Energy (keV)"] < En_Au + tol_Au))]
-    return df_energy_Au   
+    return df_energy_Au 
+
 def Selecion_Nucleidos(df_rpt_Au,df_Nucleidos, df_databas):
     df_filtrado = df[(df[""] == "P") & ((df["Energía"] > 100) | (df["Energía"] < 20))]
     return 0   
