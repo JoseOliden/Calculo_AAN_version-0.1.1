@@ -72,6 +72,7 @@ def procesar_RPT(rpt_file):
     st.dataframe(df_demas)
     #df_demas_tab = df_demas.split(r"\s+", expand=True)
     df_demas_tab = df_demas["linea"].str.split(r"\s+", n=9, expand=True)
+    st.dataframe(df_demas_tab)
     df_demas_tab.columns = ["Peak No.", "ROI Start", "ROI End", "Peak Centroid",
         "Energy (keV)", "Net Peak Area", "Net Peak Uncert",
         "Continuum Counts", "Tentative Nuclide"
