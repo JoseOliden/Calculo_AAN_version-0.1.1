@@ -140,6 +140,8 @@ if page == "📁 Carga de Datos":
         ref_files = st.file_uploader(f"Subir archivo RDN_{ref_type[0]}.xlsx", type=['xlsx'], key="reference")
         if ref_files:
             st.success(f"✅ Archivo cargado")
+            ref_files = pd.read_excel(ref_files)
+            st.dataframe(ref_files)
 
 # ============================================
 # SECCIÓN 2: CONFIGURACIÓN
