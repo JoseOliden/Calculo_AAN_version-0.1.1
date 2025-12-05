@@ -97,6 +97,9 @@ if page == "📁 Carga de Datos":
         rpt_au_file = st.file_uploader("Subir archivo .RPT de Au", type=['RPT', 'RPT'], key="rpt_au")
         if rpt_au_file:
             st.success(f"✅ {rpt_au_file.name} cargado")
+            if rpt_au_file:
+                df_au_resultado_au = procesar_RPT(rpt_au_file)
+                st.dataframe(df_au_resultado)
 
     with col4:
         st.subheader("📄 Archivo .k0s de Au (Comparador)")
