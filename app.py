@@ -70,10 +70,7 @@ if page == "📁 Carga de Datos":
             if rpt_file:
                 df_resultado = procesar_RPT(rpt_file)
                 st.dataframe(df_resultado)
-            # Leer y mostrar vista previa
-            # content = rpt_file.getvalue().decode('latin-1')
-            # st.text_area("Vista previa (primeras 20 líneas):", value='\n'.join(content.split('\n')[:20]), height=200)
-    
+                
     with col2:
         st.subheader("📄 Archivo .k0s de Muestra")
         k0s_file = st.file_uploader("Subir archivo .k0s", type=['k0s', 'K0S'], key="k0s_sample")
@@ -87,7 +84,6 @@ if page == "📁 Carga de Datos":
                 st.write(f"**Tiempo vivo (s):** {t_vivo}")
                 st.write(f"**Tiempo real (s):** {t_real}")
                 
-    
     with col3:
         st.subheader("📄 Archivo .RPT de Au (Comparador)")
         rpt_au_file = st.file_uploader("Subir archivo .RPT de Au", type=['RPT', 'RPT'], key="rpt_au")
@@ -205,7 +201,7 @@ elif page == "📊 Procesamiento":
                 "Calculando incertidumbres...",
                 "Generando resultados..."
             ]
-            
+        
             for i, step in enumerate(steps):
                 progress_bar.progress((i + 1) / len(steps))
                 status_text.text(f"📋 {step}")
