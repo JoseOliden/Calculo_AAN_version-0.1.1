@@ -11,7 +11,7 @@ import sympy as sp
 import matplotlib.pyplot as plt
 import tempfile
 import base64
-
+# ------------------ RPT ---------------------------------
 def limpiar(valor):
     if isinstance(valor, str):
         # 1. quitar solo un espacio inicial si existe
@@ -71,3 +71,37 @@ def procesar_RPT(rpt_file):
     st.success("Archivo procesado correctamente 🚀")
     
     return df_tab
+
+# ------------------ kos ---------------------------------
+
+def extraer_DATE_MEAS_TIM(kos_file):
+    if kos_file is None:
+        return None
+
+    # Leer sin consumir el buffer
+    contenido = kos_file.getvalue().decode("utf-8", errors="ignore")
+    lineas = contenido.splitlines()
+
+    fecha = hora = tiempo_real = tiempo_vivo = None
+
+    for linea in lineas:
+        linea = linea.strip()
+
+        # ----------------- DATE_MEA -----------------
+        if linea.startswith("$DATE_MEA"):
+            partes = linea.split()
+            # $DATE_MEA YYYY-MM-DD HH:MM:SS
+            if len(partes) >= 3:
+                fecha = partes[1]
+                hora = partes[2]
+
+        # ----------------- MEAS_TIM -----------------
+        if linea.startswith("$MEAS_TIM"):
+            partes = linea.split()
+            # $MEAS_TIM TR TL
+            if len(partes) >= 3:
+                tiempo_real = partes[1]
+                tiempo_vivo = partes[2]
+
+    return fecha, hora, tiempo_real, tiempo_vivo
+
