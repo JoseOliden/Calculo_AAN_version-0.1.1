@@ -79,7 +79,7 @@ def procesar_RPT(rpt_file):
 
 def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
     df_rpt_muestras["Energy (keV)"] = pd.to_numeric(df_rpt_muestras["Energy (keV)"], errors="coerce")
-    df_Nucleidos["Energy"] = pd.to_numeric(df_Nucleidos["Energy"], errors="coerce")
+    df_Nucleidos["E (keV)"] = pd.to_numeric(df_Nucleidos["E (keV)"], errors="coerce")
     tol = 1.5 
     elementos_validos = df_Nuclidos["Elemento"].unique()
 
