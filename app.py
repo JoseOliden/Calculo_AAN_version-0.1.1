@@ -70,7 +70,8 @@ if page == "📁 Carga de Datos":
             if rpt_file:
                 df_resultado = procesar_RPT(rpt_file)
                 st.dataframe(df_resultado)
-                
+                st.session_state.df_resultado = df_resultado
+    
     with col2:
         st.subheader("📄 Archivo .k0s de Muestra")
         k0s_file = st.file_uploader("Subir archivo .k0s", type=['k0s', 'K0S'], key="k0s_sample")
@@ -259,6 +260,8 @@ elif page == "📊 Procesamiento":
             df_Au = Selecion_Nucleidos_Au(st.session_state.df_au_resultado,st.session_state.ref_files, st.session_state.df_file)
             st.dataframe(df_Au)
 
+            df_filtrado_Nuclidos = Selecion_Nucleidos_muestra(st.session_state.df_resultado,st.session_state.ref_files)
+            st.dataframe(df_filtrado_Nuclidos)
 # ============================================
 # SECCIÓN 4: RESULTADOS
 # ============================================
