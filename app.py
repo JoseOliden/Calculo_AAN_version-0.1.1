@@ -260,6 +260,8 @@ elif page == "📊 Procesamiento":
             df_Au = Selecion_Nucleidos_Au(st.session_state.df_au_resultado,st.session_state.ref_files, st.session_state.df_file)
             st.dataframe(df_Au)
 
+            st.dataframe(st.session_state.df_resultado)
+            st.dataframe(st.session_state.ref_files)
             df_filtrado_Nuclidos = Selecion_Nucleidos_muestra(st.session_state.df_resultado,st.session_state.ref_files)
             st.dataframe(df_filtrado_Nuclidos)
 # ============================================
