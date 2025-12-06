@@ -153,7 +153,7 @@ elif page == "⚙️ Configuración":
         masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
         st.session_state.masa_muestra = masa_muestra
         masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
-        st.session_state.ref_files = masa_comparador_au
+        st.session_state.masa_comparador_au = masa_comparador_au
         
         st.subheader("📐 Geometría")
         geometria = st.radio("Geometría de detección:", ["50 mm", "185 mm"])
