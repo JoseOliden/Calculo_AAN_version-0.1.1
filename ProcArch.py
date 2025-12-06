@@ -95,7 +95,7 @@ def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
     for _, rango in df_Nucleidos.iterrows():
         e_min = rango['E (keV)'] - tol
         e_max = rango['E (keV)'] + tol
-        nucleido = rango['elementos']
+        nucleido = rango['Elemento']
         
         # Filtrar muestras en este rango
         mascara = (df_filtrado1['Energy (keV)'] >= e_min) & (df_filtrado1['Energy (keV)'] <= e_max)
