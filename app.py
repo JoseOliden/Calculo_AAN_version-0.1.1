@@ -162,7 +162,7 @@ elif page == "⚙️ Configuración":
         
         st.subheader("⏰ Tolerancia de Energía")
         tolerancia = st.slider("Tolerancia de energía (keV):", min_value=0.1, max_value=5.0, value=1.5, step=0.1)
-        st.session_state.tolerancia = tolerancia    
+        st.session_state.tolerancia = float(tolerancia)    
     
     with col2:
         st.subheader("🕐 Tiempos de Irradiación")
