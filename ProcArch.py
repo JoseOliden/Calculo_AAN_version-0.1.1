@@ -126,7 +126,6 @@ def Selecion_Nucleidos_Au(df_rpt_Au,df_Nucleidos, df_database):
     return df_energy_Au 
 
 def Extra_from_database(df, df_database,tol=1.5):
-    df_database.drop(columns=["f"],inplace=True)
     df["Energy (keV)"] = pd.to_numeric(df["Energy (keV)"], errors="coerce")
     df_database["EGKEV"] = pd.to_numeric(df_database["EGKEV"], errors="coerce")
     #elementos_validos = df["Identidad_Verificada_Energia"].unique()
