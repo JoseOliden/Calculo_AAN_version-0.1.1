@@ -258,14 +258,21 @@ elif page == "📊 Procesamiento":
             st.session_state['resultados'] = df_ejemplo
             st.session_state['procesado'] = True
 
+            # Procesa comparador de Au y sus datos
             df_Au = Selecion_Nucleidos_Au(st.session_state.df_au_resultado, st.session_state.df_file,st.session_state.tolerancia)
             st.dataframe(df_Au)
-
+            # Hallar los nucleidos y sus datos
             df_filtrado_Nuclidos = Selecion_Nucleidos_muestra(st.session_state.df_resultado,st.session_state.ref_files, st.session_state.df_file, st.session_state.tolerancia)
             st.dataframe(df_filtrado_Nuclidos)
 
-            #df_filtrado_Nuclidos_prop = Extra_from_database(df_filtrado_Nuclidos, st.session_state.df_file,st.session_state.tolerancia)
-            #st.dataframe(df_filtrado_Nuclidos_prop)
+            #Tiempos de irradiación y decaimiento de la muestra
+            # Irraciación: (fecha_fin, hora_fin) - (fecha_ini, hora_ini)
+            # Decaimiento: (fecha_ini, hora_ini) -  (fecha, hora) 
+
+            #Tiempos de irradiación y decaimiento del comparador Au 
+            # Se el comparador fue irradiado en un tiempo diferente el cálculo
+            # Irraciación: (fecha_fin, hora_fin) - (fecha_ini, hora_ini)
+            # Decaimiento: (fecha_ini, hora_ini) -  (fecha_au, hora_au) 
 # ============================================
 # SECCIÓN 4: RESULTADOS
 # ============================================
