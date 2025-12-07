@@ -77,10 +77,9 @@ def procesar_RPT(rpt_file):
     st.success("Archivo procesado correctamente 🚀")
     return df_tab
 
-def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
+def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos,tol):
     df_rpt_muestras["Energy (keV)"] = pd.to_numeric(df_rpt_muestras["Energy (keV)"], errors="coerce")
     df_Nucleidos["E (keV)"] = pd.to_numeric(df_Nucleidos["E (keV)"], errors="coerce")
-    tol = float(1.5) 
     elementos_validos = df_Nucleidos["Elemento"].unique()
     df_filtrado1 = df_rpt_muestras[
         (df_rpt_muestras["Tentative Nuclide"].isin(elementos_validos)) 
@@ -118,7 +117,6 @@ def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
     
     return df_filtrado
 
-
 def Selecion_Nucleidos_Au(df_rpt_Au,df_Nucleidos, df_database):
     # buscar en database energía de Au
     En_Au = float(411.8) 
@@ -127,8 +125,8 @@ def Selecion_Nucleidos_Au(df_rpt_Au,df_Nucleidos, df_database):
     df_energy_Au = df_rpt_Au[(df_rpt_Au["Tentative Nuclide"] == "AU-198") & ((df_rpt_Au["Energy (keV)"] > En_Au - tol_Au) | (df_rpt_Au["Energy (keV)"] < En_Au + tol_Au))]
     return df_energy_Au 
 
-def Selecion_Nucleidos(df_rpt_Au,df_Nucleidos, df_databas):
-    df_filtrado = df[(df[""] == "P") & ((df["Energía"] > 100) | (df["Energía"] < 20))]
+def Extra_from_database(df, df_database):
+    
     return 0   
 
 # ------------------ kos ---------------------------------
