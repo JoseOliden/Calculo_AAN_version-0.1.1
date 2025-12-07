@@ -79,7 +79,6 @@ def procesar_RPT(rpt_file):
 
 def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
     df_rpt_muestras["Energy (keV)"] = pd.to_numeric(df_rpt_muestras["Energy (keV)"], errors="coerce")
-    st.dataframe(df_Nucleidos)
     df_Nucleidos["E (keV)"] = pd.to_numeric(df_Nucleidos["E (keV)"], errors="coerce")
     tol = float(1.5) 
     elementos_validos = df_Nucleidos["Elemento"].unique()
@@ -102,12 +101,7 @@ def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
         mascara = (df_filtrado1['Energy (keV)'] >= e_min) & (df_filtrado1['Energy (keV)'] <= e_max)
         muestras_en_rango = df_filtrado1[mascara].copy()
         
-        if not muestras_en_rango.empty:
-            # Agregar información del nucleido
-        #    muestras_en_rango[''] = nucleido
-        #    muestras_en_rango['E_min_rango'] = e_min
-        #    muestras_en_rango['E_max_rango'] = e_max
-            
+        if not muestras_en_rango.empty:    
             filas_filtradas.append(muestras_en_rango)
             #Nucleidos = pd.concat([Nucleidos, nucleido], pd.Series(nucleido) ignore_index=True)
             #Nucleidos['Identidad_Verificada_Energia'] = nucleido
@@ -118,7 +112,6 @@ def Selecion_Nucleidos_muestra(df_rpt_muestras,df_Nucleidos):
     
     if not filas_filtradas:
         return pd.DataFrame()
-    st.dataframe(Nucleidos)
     # Combinar todos los resultados
     df_filtrado = pd.concat(filas_filtradas, ignore_index=True)
     df_filtrado = df_filtrado.join(Nucleidos)
