@@ -151,7 +151,7 @@ def Extra_from_database(df, df_database,tol=1.5):
         mascara = (df_database_o['NUCLID'] == nucleido) & (df_database_o['EGKEV'] >= e_min) & (df_database_o['EGKEV'] <= e_max)
         muestras_en_rango = df_database_o[mascara].copy()
         st.dataframe(muestras_en_rango)
-        df_prop_nucleidos = pd.concat([df_prop_nucleidos, muestras_en_rango], ignore_index=True)
+        #df_prop_nucleidos = pd.concat([df_prop_nucleidos, muestras_en_rango], ignore_index=True)
         """if not muestras_en_rango.empty:    
             filas_filtradas.append(muestras_en_rango)
             #Nucleidos = pd.concat([Nucleidos, nucleido], pd.Series(nucleido) ignore_index=True)
@@ -168,7 +168,7 @@ def Extra_from_database(df, df_database,tol=1.5):
     df_filtrado = df_filtrado.join(Nucleidos)"""
     
     
-    return df_prop_nucleidos  
+    return df  
 
 # ------------------ kos ---------------------------------
 
