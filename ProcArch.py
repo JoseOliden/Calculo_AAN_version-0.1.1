@@ -135,7 +135,7 @@ def Extra_from_database(df, df_database,tol=1.5):
     #st.dataframe(df_filtrado1)
     df.reset_index(drop=True, inplace=True)
     df_database.reset_index(drop=True, inplace=True)
-    df_basebase_o = df_database
+    df_basebase_o = df_database.copy()
     #df_filtrado1.reset_index(drop=True, inplace=True)
    
     #filas_filtradas = []
