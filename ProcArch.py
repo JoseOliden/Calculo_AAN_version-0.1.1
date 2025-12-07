@@ -142,9 +142,9 @@ def Extra_from_database(df, df_database,tol=1.5):
     #Nucleidos = pd.DataFrame(columns=['Identidad_Verificada_Energia'])  
     
     for _, rango in df.iterrows():
-        e_min = rango['EGKEV'] - tol
-        e_max = rango['EGKEV'] + tol
-        nucleido = rango['NUCLID']
+        e_min = rango['Energy (keV)'] - tol
+        e_max = rango['Energy (keV)'] + tol
+        nucleido = rango['Tentative Nuclide']
         
         # Filtrar muestras en este rango
         mascara = (df_database_o['NUCLID'] == nucleido & df_database_o['EGKEV'] >= e_min) & (df_database_o['EGKEV'] <= e_max)
