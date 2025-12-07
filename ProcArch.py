@@ -125,9 +125,47 @@ def Selecion_Nucleidos_Au(df_rpt_Au,df_Nucleidos, df_database):
     df_energy_Au = df_rpt_Au[(df_rpt_Au["Tentative Nuclide"] == "AU-198") & ((df_rpt_Au["Energy (keV)"] > En_Au - tol_Au) | (df_rpt_Au["Energy (keV)"] < En_Au + tol_Au))]
     return df_energy_Au 
 
-def Extra_from_database(df, df_database):
+def Extra_from_database(df, df_database,tol):
+    df["Energy (keV)"] = pd.to_numeric(df["Energy (keV)"], errors="coerce")
+    df_database["EGKEV"] = pd.to_numeric(df_database["EGKEV"], errors="coerce")
+    elementos_validos = df["Identidad_Verificada_Energia"].unique()
+    df_filtrado1 = df_database[
+        (df_database["NUCLID"].isin(elementos_validos)) 
+       ]
+    st.dataframe(df_filtrado1)
+    df.reset_index(drop=True, inplace=True)
+    df_database.reset_index(drop=True, inplace=True)
+    df_filtrado1.reset_index(drop=True, inplace=True)
+   
+    filas_filtradas = []
+    Nucleidos = pd.DataFrame(columns=['Identidad_Verificada_Energia'])  
     
-    return 0   
+    for _, rango in df_Nucleidos.iterrows():
+        e_min = rango['E (keV)'] - tol
+        e_max = rango['E (keV)'] + tol
+        nucleido = rango['Elemento']
+        
+        # Filtrar muestras en este rango
+        mascara = (df_filtrado1['Energy (keV)'] >= e_min) & (df_filtrado1['Energy (keV)'] <= e_max)
+        muestras_en_rango = df_filtrado1[mascara].copy()
+        
+        if not muestras_en_rango.empty:    
+            filas_filtradas.append(muestras_en_rango)
+            #Nucleidos = pd.concat([Nucleidos, nucleido], pd.Series(nucleido) ignore_index=True)
+            #Nucleidos['Identidad_Verificada_Energia'] = nucleido
+            lista_nucleidos = Nucleidos['Identidad_Verificada_Energia'].tolist()
+            lista_nucleidos.append(nucleido)
+            Nucleidos = pd.DataFrame() 
+            Nucleidos['Identidad_Verificada_Energia'] = lista_nucleidos
+    
+    if not filas_filtradas:
+        return pd.DataFrame()
+    # Combinar todos los resultados
+    df_filtrado = pd.concat(filas_filtradas, ignore_index=True)
+    df_filtrado = df_filtrado.join(Nucleidos)
+    
+    
+    return df_salida   
 
 # ------------------ kos ---------------------------------
 
