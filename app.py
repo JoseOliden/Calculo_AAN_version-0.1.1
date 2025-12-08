@@ -204,9 +204,9 @@ elif page == "⚙️ Configuración":
     st.subheader("🔬 Comparadores para Cálculo de f y α")
     st.info("ℹ️ Los comparadores Au, Co y Mo se utilizarán para calcular los parámetros f y α")
     df_comparadores_alfa_f = crear_df_comparadores()
-    #if "df_comparadores_alfa_f" not in st.session_state:
-    #    st.session_state.df_comparadores_alfa_f = pd.DataFrame()
-    #else:
+    if "df_comparadores_alfa_f" not in st.session_state:
+        st.session_state.df_comparadores_alfa_f = crear_df_comparadores()
+    else:
     st.session_state.df_comparadores_alfa_f
     st.dataframe(df_comparadores_alfa_f)
     
