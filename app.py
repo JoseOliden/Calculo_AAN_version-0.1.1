@@ -205,7 +205,8 @@ elif page == "⚙️ Configuración":
     df_comparadores_alfa_f = crear_df_comparadores()    
     st.info("ℹ️ Los comparadores Au, Co y Mo se utilizarán para calcular los parámetros f y α")
     st.dataframe(df_comparadores_alfa_f)
-
+    st.session_state.df_comparadores_alfa_f
+    
 # ============================================
 # SECCIÓN 3: PROCESAMIENTO
 # ============================================
@@ -289,6 +290,8 @@ elif page == "📊 Procesamiento":
             st.write(f"**Tiempo irradiación del comparador Au (s):** {t_irr_Au}")
             st.write(f"**Tiempo decaimiento del comparador Au (s):** {t_dec_Au}")
 
+            # Cálculo de f y alfa
+            
 
 # ============================================
 # SECCIÓN 4: RESULTADOS
