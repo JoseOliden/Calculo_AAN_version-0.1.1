@@ -14,6 +14,19 @@ def Aesp(Cn_i, w_i,lam,tr,td,ti,tv,e):
   return Cn_i*D_i*C_i*H_i/(S_i*w_i) # se agregó e
 
 # ---------------------------- Calculo de alfa --------------------------------#
+def crear_df_compardores()
+  # comparadores [Au Co Mo]
+  #Q0_c = np.array([15.712, 2.041, 53.1])    #
+  df = pd.DataFrame(
+      data=[
+        [1.00,      0.02272,  52346, 0.0000001358, 15.712, 0.000002977,    5.65,  306314, 1500, 10800, 1478.0],
+        [1.32,      0.0113,   36082, 0.000051573,  2.041,  0.000000004167, 136.0, 306314, 1500, 10800, 1478.0],
+        [0.0000846, 0.016053, 39272, 0.002088591,  50.365, 0.00000291994,  241,   299161, 900,  10800, 866.0]
+      ],
+      columns=["k0", "efe", "Cn", "w", "Q0", "lambda", "Er", "t_dec", "t_real", "t_irr", "t_vivo" ],
+      index=["Au", "Co", "Mo"]
+    )
+  return df
 
 def equations(vars, *par):
    # Define el sistema de ecuaciones para hallar alfa
