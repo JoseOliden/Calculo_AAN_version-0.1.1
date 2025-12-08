@@ -199,13 +199,13 @@ elif page == "⚙️ Configuración":
         u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
         st.session_state.u_w = u_w_Au
 
-    
+        
     # Comparadores para cálculo de alfa
     st.subheader("🔬 Comparadores para Cálculo de f y α")
-    df_comparadores_alfa_f = crear_df_comparadores()    
+    df_comparadores_alfa_f = crear_df_comparadores()
+    st.session_state.df_comparadores_alfa_f
     st.info("ℹ️ Los comparadores Au, Co y Mo se utilizarán para calcular los parámetros f y α")
     st.dataframe(df_comparadores_alfa_f)
-    st.session_state.df_comparadores_alfa_f
     
 # ============================================
 # SECCIÓN 3: PROCESAMIENTO
