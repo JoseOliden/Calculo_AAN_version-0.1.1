@@ -190,3 +190,30 @@ def extraer_DATE_MEA_MEAS_TIM(k0s_file):
                     tiempo_real = datos[1]
                     
     return fecha, hora, tiempo_vivo, tiempo_real
+
+#  ------------------ kos ---------------------------------
+# tiempo de decaimiento y tiempo de irradiación
+
+def (f_ini, h_ini, f_fin, h_fin, f_med, hora_med, f_med_c_Au, hora_med_c_Au ): 
+    # f_ini, h_ini: fecha y hora de inicio de irradiación 
+    # f_fin, h_fin: fecha y hora de fin de irradiación 
+    # f_med, hora_med: de inicio de la medición muestra 
+    # f_med_c_Au, hora_med_c_Au: Fecha y hora de incio de medición Comparador Au 
+    fecha1 = str(f_ini+" "+h_ini)
+    fecha2 = str(f_fin+" "+h_fin)
+    fecha3 = str(str(f_med)+" "+str(hora_med)) # muestra
+    fecha4 = str(str(f_med_c_Au)+" "+str(hora_med_c_Au)) # comparador
+
+    f1 = datetime.strptime(fecha1, "%m/%d/%Y %H:%M:%S")
+    f2 = datetime.strptime(fecha2, "%m/%d/%Y %H:%M:%S")
+    f3 = datetime.strptime(fecha3, "%m/%d/%Y %H:%M:%S")
+    f4 = datetime.strptime(fecha4, "%m/%d/%Y %H:%M:%S")
+
+    # Diferencia en segundos
+
+    ti_i = float((f2 - f1).total_seconds())
+    td_i = float((f3 - f2).total_seconds())
+    ti_c_Au = float((f2 - f1).total_seconds())
+    td_c_Au = float((f4 - f2).total_seconds())
+    
+    return ti_i,td_i, ti_c_Au, td_c_Au 
