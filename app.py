@@ -154,7 +154,7 @@ elif page == "⚙️ Configuración":
         masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
         st.session_state.masa_muestra = np.float64(masa_muestra)
         masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
-        st.session_state.masa_comparador_au = np.float64(masa_comparador_au)
+        st.session_state.masa_comparador_au = np.float64(masa_comparador_au)/1000000
         
         st.subheader("📐 Geometría")
         geometria = st.radio("Geometría de detección:", ["50 mm", "185 mm"])
@@ -308,7 +308,7 @@ elif page == "📊 Procesamiento":
             tv_i = st.session_state.t_vivo
             tr_i = st.session_state.t_real
             df_comp_Au = df_Au
-            w_Au = (st.session_state.masa_comparador_au)/1000000
+            w_Au = (st.session_state.masa_comparador_au)
             td_c_Au = t_dec
             ti_c_Au = t_irr
             tv_c_Au = st.session_state.t_vivo_au
