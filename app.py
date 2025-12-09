@@ -323,7 +323,7 @@ elif page == "📊 Procesamiento":
             st.write(Q0_alfa_c_Au)
             st.write(Aesp_i)
             st.write(Aesp_c_Au)
-            st.write(lam_c_Au)
+            st.write(lam_c_Au[0])
 # ============================================
 # SECCIÓN 4: RESULTADOS
 # ============================================
