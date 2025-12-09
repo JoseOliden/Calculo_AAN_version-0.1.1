@@ -106,6 +106,7 @@ def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_
   Q0_c_Au = df_comp_Au["Q0"].to_numpy(dtype="float64")
   Cn_c_Au = df_comp_Au["Net Peak Area"].to_numpy(dtype="float64")
   w_c_Au = w_Au
+  # jojo
   lam_c_Au = np.float64(0.0000029768) 
   #lam_c_Au = np.log(2)/df_comp_Au["t(1/2) s"].to_numpy(dtype="float64")
   Er_c_Au = df_comp_Au["EREF"].to_numpy(dtype="float64")
