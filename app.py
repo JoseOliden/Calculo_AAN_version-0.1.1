@@ -109,8 +109,8 @@ if page == "📁 Carga de Datos":
             fecha_au, hora_au, t_vivo_au, t_real_au = extraer_DATE_MEA_MEAS_TIM(k0s_au_file)
             st.session_state.fecha_au = fecha_au
             st.session_state.hora_au = hora_au
-            st.session_state.t_vivo_au = float(t_vivo_au)
-            st.session_state.t_real_au = float(t_real_au)
+            st.session_state.t_vivo_au = float64(t_vivo_au)
+            st.session_state.t_real_au = float64(t_real_au)
             
             st.subheader("📌 Datos extraídos del archivo")
             st.write(f"**Fecha de medición:** {fecha_au}")
@@ -152,9 +152,9 @@ elif page == "⚙️ Configuración":
     with col1:
         st.subheader("⚖️ Parámetros de Masa")
         masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
-        st.session_state.masa_muestra = masa_muestra
+        st.session_state.masa_muestra = float64(masa_muestra)
         masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
-        st.session_state.masa_comparador_au = masa_comparador_au
+        st.session_state.masa_comparador_au = float64(masa_comparador_au)
         
         st.subheader("📐 Geometría")
         geometria = st.radio("Geometría de detección:", ["50 mm", "185 mm"])
@@ -163,7 +163,7 @@ elif page == "⚙️ Configuración":
         
         st.subheader("⏰ Tolerancia de Energía")
         tolerancia = st.slider("Tolerancia de energía (keV):", min_value=0.1, max_value=5.0, value=1.5, step=0.1)
-        st.session_state.tolerancia = float(tolerancia)    
+        st.session_state.tolerancia = float64(tolerancia)    
     
     with col2:
         st.subheader("🕐 Tiempos de Irradiación")
@@ -191,13 +191,13 @@ elif page == "⚙️ Configuración":
         
         st.subheader("📊 Parámetros de Incertidumbre")
         u_k0 = st.number_input("Incertidumbre k0 de la muestra (%):", min_value=0.0, max_value=10.0, value=2.8, step=0.1)
-        st.session_state.u_k0 = u_k0
+        st.session_state.u_k0 = float64(u_k0)
         u_e = st.number_input("Incertidumbre eficiencia de la muestra (%):", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
-        st.session_state.u_e = u_e
+        st.session_state.u_e = float64(u_e)
         u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
-        st.session_state.u_w = u_w
+        st.session_state.u_w = float64(u_w)
         u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
-        st.session_state.u_w = u_w_Au
+        st.session_state.u_w = float64(u_w_Au)
 
         
     # Comparadores para cálculo de alfa
