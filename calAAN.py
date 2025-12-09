@@ -54,7 +54,6 @@ def cal_alfa(df_comp):
   # calcula alfa
   #k0_c, e_c, Q0_c, Cn_c, w_c, lam_c,Er_c, td_c, tr_c, ti_c, tv_c = par_comp
   k0_c = df_comp["k0"].to_numpy()
-  st.write(k0_c)
   e_c = df_comp["efe"].to_numpy()
   Q0_c = df_comp["Q0"].to_numpy()
   Cn_c = df_comp["Cn"].to_numpy()
@@ -93,47 +92,52 @@ def cal_Q0_alfa_i(Q0,Er,alfa):
   # (Q0-0.429)/(Er**alfa) + 0.429/(2*alfa+0.55**alfa) # MACROS
   return (Q0-0.429)/(Er**alfa) + 0.429/(2*alfa+0.55**alfa)
 
-def conc(par_ele, par_comp, par_comp_Au, equations):
-  # Calcula la conctración de un elementos.
-  k0_i, e_i, Q0_i, Cn_i, w_i, lamb_i, Er_i, td_i, tr_i, ti_i, tv_i = par_ele
+def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_c_Au,tr_c_Au, alfa, f, geometria):
+  alfa = 0.226 # Forzar valor de alfa 
+  f = 34       # Forzar valor de f
+  
+  # Comparador Au
+  #k0_c_Au, e_c_Au, Q0_c_Au, Cn_c_Au, w_c_Au, lam_c_Au, Er_c_Au, td_c_Au, tr_c_Au, ti_c_Au, tv_c_Au =  par_comp_Au
+  k0_c_Au = df_comp_Au["K0"].to_numpy()
+  if geometria == 50:
+    e_c_Au = df_comp_Au["EFIGAMMA50"].to_numpy()*df_comp_Au["COI ROSSBACH"].to_numpy()
+  if geometria == 185:
+    e_c_Au = df_comp_Au["EFIGAMMA185"].to_numpy()*df_comp_Au["COI GAMMA185"].to_numpy()
+  Q0_c_Au = df_comp_Au["Q0"].to_numpy()
+  Cn_c_Au = df_comp_Au["NET Peak Area"].to_numpy()
+  w_c_Au = w_Au
+  lam_c_Au = log(2)/df_comp_Au["t(1/2) s"].to_numpy()
+  Er_c_Au = df_comp_Au["EREF"].to_numpy()
 
-  k0_c, e_c, Q0_c, Cn_c, w_c, lam_c,Er_c, td_c, tr_c, ti_c, tv_c = par_comp
-
-  k0_c_Au, e_c_Au, Q0_c_Au, Cn_c_Au, w_c_Au, lam_c_Au, Er_c_Au, td_c_Au, tr_c_Au, ti_c_Au, tv_c_Au =  par_comp_Au
-
-  Aesp_i = Aesp(Cn_i, w_i, lamb_i, tr_i, td_i, ti_i, tv_i, e_i)
-  Aesp_c_Au = Aesp(Cn_c_Au, w_c_Au, lam_c_Au, tr_c_Au, td_c_Au, ti_c_Au, tv_c_Au,
-                   e_c_Au)
-  Aesp_c = np.zeros(len(k0_c))
-  for i in range(len(k0_c)):
-    Aesp_c[i] = Aesp(Cn_c[i], w_c[i],lam_c[i],tr_c[i],td_c[i],ti_c[i],tv_c[i],e_c[i])
-  # calculo de alfa
-  #alfa = cal_alfa(par_comp, equations)
-  alfa = 0.226
-  st.success(f" Valor de alfa: {alfa}")
-  #calculo Q0_alfa
-  Q0_alfa_i = cal_Q0_alfa_i(Q0_i,Er_i,alfa)
+  Aesp_c_Au = Aesp(Cn_c_Au, w_c_Au, lam_c_Au, tr_c_Au, td_c_Au, ti_c_Au, tv_c_Au, e_c_Au)
   Q0_alfa_c_Au = cal_Q0_alfa_i(Q0_c_Au,Er_c_Au,alfa)
-  Q0_alfa_c = np.zeros(len(k0_c))
-  for i in range(len(k0_c)):
-    Q0_alfa_c[i] = cal_Q0_alfa_i(Q0_c[i],Er_c[i],alfa)
-  # calculo de f
-  #f = cal_f_alfa(Q0_alfa_c,Aesp_c,e_c,k0_c)
-  f = 34
-  st.success(f" Valor de f: {f}")
-  # Calcula la concentración del elemento i en la muestra
-  C = (Aesp_i/Aesp_c_Au)*(k0_c_Au/k0_i)*(e_c_Au/e_i)*((f + Q0_alfa_c_Au)/(f + Q0_alfa_i))
+  
+  # muestra
+  #k0_i, e_i, Q0_i, Cn_i, w_i, lamb_i, Er_i, td_i, tr_i, ti_i, tv_i = par_ele
+  k0_i = df_muestra["K0"].to_numpy()
+  if geometria == 50:
+    e_i = df_muestra["EFIGAMMA50"].to_numpy()*df_muestra["COI ROSSBACH"].to_numpy()
+    #e_i = df_muestra["efe"].to_numpy()
+  if geometria == 185:
+    e_i = df_muestra["EFIGAMMA185"].to_numpy()*df_muestra["COI GAMMA185"].to_numpy()
+  Q0_i = df_muestra["Q0"].to_numpy()
+  Cn_i = df_muestra["NET Peak Area"].to_numpy()
+  w_i = w
+  lam_i = log(2)/df_muestra["t(1/2) s"].to_numpy()
+  Er_i = df_muestra["EREF"].to_numpy()
 
-  # [A_1, A_2, Cn, Cn_1, Er, Er_1, Er_2, Q0, Q0_1, Q0_2, alpha, e, e_1, e_2, k0, k0_1, k0_2, lamb, lamb_1, td, td_1, ti, ti_1, tr, tr_1, tv, tv_1, w, w_1]
-  variables_2_U = (Cn_i, Cn_c[0], Cn_c[1], Cn_c_Au, Er_i, Er_c[0], Er_c[1],
-                   Er_c_Au, Q0_i, Q0_c[0], Q0_c[1], Q0_c_Au, alfa, e_i, e_c[0],
-                   e_c[1], e_c_Au, k0_i, k0_c[0], k0_c[1], k0_c_Au, lamb_i,
-                   lam_c[0], lam_c[1], lam_c_Au, td_i, td_c[0], td_c[1], td_c_Au,
-                   ti_i, ti_c[0], ti_c[1], ti_c_Au, tr_i, tr_c[0], tr_c[1],
-                   tr_c_Au, tv_i, tv_c[0], tv_c[1], tv_c_Au, w_i, w_c[0], w_c[1],
-                   w_c_Au)
+  Aesp_i = np.zeros(len(k0_i))
+  Q0_alfa_i = np.zeros(len(k0_i))
+  for i in range(len(k0_i)):
+    Aesp_i = Aesp(Cn_i[i], w_i, lamb_i[i], tr_i, td_i, ti_i, tv_i, e_i[i])
+    Q0_alfa_i = cal_Q0_alfa_i(Q0_i[i],Er_i[i],alfa)
 
-  return C, alfa, f, variables_2_U
+  C = np.zeros(len(k0_i))
+  for i in range(len(k0_i)):
+    # Calcula la concentración del elemento i en la muestra
+    C[i] = (Aesp_i[i]/Aesp_c_Au)*(k0_c_Au/k0_i[i])*(e_c_Au/e_i[i])*((f + Q0_alfa_c_Au)/(f + Q0_alfa_i[i]))
+  
+  return C 
 
 # ------------------------ Calculo de Incertidumbre ---------------------------#
 
