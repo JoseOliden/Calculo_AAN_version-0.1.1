@@ -309,6 +309,7 @@ elif page == "📊 Procesamiento":
             tr_i = st.session_state.t_real
             df_comp_Au = df_Au
             w_Au = (st.session_state.masa_comparador_au)
+            #jojo
             td_c_Au = t_dec
             ti_c_Au = t_irr
             tv_c_Au = st.session_state.t_vivo_au
