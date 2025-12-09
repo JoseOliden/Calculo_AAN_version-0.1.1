@@ -317,6 +317,8 @@ elif page == "📊 Procesamiento":
             
             C = conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_c_Au,tr_c_Au, alfa, f, geom)
             st.write(C*1000000)
+            df_muestra["Concentracion (PPM)"] = C*1000000
+            st.dataframe(df_muestra)
 # ============================================
 # SECCIÓN 4: RESULTADOS
 # ============================================
