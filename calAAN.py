@@ -99,9 +99,9 @@ def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_
   # Comparador Au
   #k0_c_Au, e_c_Au, Q0_c_Au, Cn_c_Au, w_c_Au, lam_c_Au, Er_c_Au, td_c_Au, tr_c_Au, ti_c_Au, tv_c_Au =  par_comp_Au
   k0_c_Au = df_comp_Au["K0"].to_numpy()
-  if geometria == 50:
+  if geometria == "50 mm":
     e_c_Au = df_comp_Au["EFIGAMMA50"].to_numpy()*df_comp_Au["COI ROSSBACH"].to_numpy()
-  if geometria == 185:
+  if geometria == "185 mm":
     e_c_Au = df_comp_Au["EFIGAMMA185"].to_numpy()*df_comp_Au["COI GAMMA185"].to_numpy()
   Q0_c_Au = df_comp_Au["Q0"].to_numpy()
   Cn_c_Au = df_comp_Au["Net Peak Area"].to_numpy()
