@@ -316,25 +316,13 @@ elif page == "📊 Procesamiento":
             tr_c_Au = st.session_state.t_real_au
             geom = st.session_state.geometria
             
-            C, Q0_alfa_i,Q0_alfa_c_Au, Aesp_i, Aesp_c_Au,lam_c_Au,Cn_c_Au = conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_c_Au,tr_c_Au, alfa, f, geom)
+            C, Cn_corr_i = conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_c_Au,tr_c_Au, alfa, f, geom)
             st.write(C*1000000)
+            df_muestra["Net Peak Area Corr"] = Cn_corr_i
             df_muestra["Concentracion (PPM)"] = C*1000000
             st.dataframe(df_muestra)
-            st.write(Q0_alfa_i)
-            st.write(Q0_alfa_c_Au)
-            st.write(Aesp_i)
-            st.write(Aesp_c_Au)
-            st.write(lam_c_Au)
-            st.write(Cn_c_Au)
-            # jojo
-            #st.write("NumPy:", np.__version__)
-            #info = np.finfo(np.float64)
-            #st.write("Machine parameters float64:")
-            #st.write("eps (ε):", info.eps)  # precisión
-            #st.write("tiny (min positivo normalizado):", info.tiny)
-            #st.write("max (máximo representable):", info.max)
-            #st.write("min (mínimo representable negativo):", info.min)
-            #st.write("resolution:", info.resolution)
+        
+           
 # ============================================
 # SECCIÓN 4: RESULTADOS
 # ============================================
