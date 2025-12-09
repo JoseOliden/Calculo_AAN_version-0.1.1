@@ -53,7 +53,7 @@ def cal_alfa(df_comp):
   
   # calcula alfa
   #k0_c, e_c, Q0_c, Cn_c, w_c, lam_c,Er_c, td_c, tr_c, ti_c, tv_c = par_comp
-  k0_c = df_comp["k0"]).to_numpy(dtype="float64")
+  k0_c = df_comp["k0"].to_numpy(dtype="float64")
   e_c = df_comp["efe"].to_numpy(dtype="float64")
   Q0_c = df_comp["Q0"].to_numpy(dtype="float64")
   Cn_c = df_comp["Cn"].to_numpy(dtype="float64")
