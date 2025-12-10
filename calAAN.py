@@ -142,7 +142,7 @@ def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_
   return C, Cn_corr_i
 
 # ------------------------ Calculo de Incertidumbre ---------------------------#
-def parametros_cal_U(df_unico, u_e,u_k0,u_w,u_w_c_Au,geom ):
+def parametros_cal_U(df_unico, df_comp, df_comp_Au, u_e,u_k0,u_w,u_w_c_Au,w_geom ):
   # i es indice el nucleido.
   # ------------------------------------------------------------------------
   alfa = 0.226
@@ -151,7 +151,6 @@ def parametros_cal_U(df_unico, u_e,u_k0,u_w,u_w_c_Au,geom ):
   Cn_i = df_unico["Net Peak Area Corr"] 
   Er_i = df_unico["EREF"] 
   Q0_i = df_unico["Q0"] 
-  Er_i = df_unico["EREF"]
   if (geom == "50 mm"):
     e_i = df_unico["EFIGAMMA50"]*df_unico["COI ROSSBACH"] 
   if (geom == "185 mm"):
@@ -163,6 +162,57 @@ def parametros_cal_U(df_unico, u_e,u_k0,u_w,u_w_c_Au,geom ):
   tr_i = 0
   tv_i = 0
   w_i = 0
+  # ----------------------- valores de los comparadores ---------------------------#
+  Cn_c = df_comp["Cn"] 
+  Er_c = df_comp["Er"] 
+  Q0_c = df_comp["Q0"] 
+  e_c = df_comp["efe"] 
+  k0_c = df_comp["k0"]
+  lamb_c = df_comp["lambda"]
+  td_c = df_comp["t_dec"]
+  ti_c = df_comp["t_irr"]
+  tr_c = df_comp["t_real"]
+  tv_c = df_comp["t_vivo"]
+  w_c = df_comp["w"]
+  
+  Cn_1 = Cn_c[0]
+  Cn_2 = Cn_c[1]
+  Cn_3 = Cn_c[2]
+  Er_1 = Er_c[0]
+  Er_2 = Er_c[1]
+  Er_3 = Er_c[2]
+  Q0_1 = Q0_c[0]
+  Q0_2 = Q0_c[1]
+  Q0_3 = Q0_c[2]
+  e_1 = e_c[0]
+  e_2 = e_c[1]
+  e_3 = e_c[2]
+  k0_1 = k0_c[0]
+  k0_2 = k0_c[1]
+  k0_3 = k0_c[2]
+  lamb_1 = lamb_c[0]
+  lamb_2 = lamb_c[1]
+  lamb_2 = lamb_c[2]
+  td_1 = td_c[0]
+  td_2 = td_c[1]
+  td_3 = td_c[2]
+  ti_1 = ti_c[0]
+  ti_2 = ti_c[1]
+  ti_3 = ti_c[2]
+  tr_1 = tr_c[0]
+  tr_2 = tr_c[1]
+  tr_3 = tr_c[2]
+  tv_1 = tv_c[0]
+  tv_2 = tv_c[1]
+  tv_3 = tv_c[2]
+  w_1 = w_c[0]
+  w_2 = w_c[1]
+  w_3 = w_c[2]
+ 
+  # ----------------------- valores del comparador de Au ---------------------------#
+
+
+  
   # -------------------- Incertidumbre de muestra -------------------------------#
   #u_e = 3 # se ingresa
   #u_k0 = 2.8 # se ingresa 
