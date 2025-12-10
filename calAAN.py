@@ -142,6 +142,84 @@ def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_
   return C, Cn_corr_i
 
 # ------------------------ Calculo de Incertidumbre ---------------------------#
+def parametros_cal_U():
+  # -------------------- Incertidumbre de muestra -------------------------------#
+  u_e = 3 # se ingresa
+  u_k0 = 2.8 # se ingresa 
+  u_w = 0.01 # se ingresa
+  #u_Cn = 1 # se calcula para cada elemento. de los Cn/u_Cn_v
+  u_Er = 0
+  u_Q0 = 0
+  u_lamb = 0
+  u_td = 0.0
+  u_ti = 0.0
+  u_tr = 0.0
+  u_tv = 0.0
+  # --------------- Incertidumbre de los comparadores ---------------------------#
+  u_Cn_1 = 0
+  u_Cn_2 = 0
+  u_Er_1 = 0
+  u_Er_2 = 0
+  u_Q0_1 = 0
+  u_Q0_2 = 0
+  u_alfa = 0
+  u_e_1 = 0
+  u_e_2 = 0
+  u_k0_1 = 0
+  u_k0_2 = 0
+  u_lamb_1 = 0
+  u_lamb_2 = 0
+  u_td_1 = 0.0
+  u_td_2 = 0.0
+  u_ti_1 = 0.0
+  u_ti_2 = 0.0
+  u_tr_1 = 0.0
+  u_tr_2 = 0.0
+  u_tv_1 = 0.0
+  u_tv_2 = 0.0
+  u_w_1 = 0.0
+  u_w_2 = 0.0
+# --------------- Incertidumbres del compardor de Au---------------------------#
+
+  u_k0_c_Au = 0.0     #
+  u_e_c_Au = 0.0    #
+  u_Q0_c_Au = 0    #
+  u_Cn_c_Au = 100*u_Cn_c_Au_input/Cn_c_Au_input     # Area del fotopico extraer de archivos PLA, RPT
+  u_w_c_Au = 1 # se ingresa
+  u_lamb_c_Au = 0.0   #
+  u_Er_c_Au = 0.0   #
+  u_td_c_Au = 0.0   # Tiempo de decaimiento
+  u_tr_c_Au = 0.0            # Tiempo de real
+  u_ti_c_Au = 0.0      # Tiempo de irradiación
+  u_tv_c_Au = 0.0   # Tiempo de vivo
+    
+
+(Cn_i, Cn_1, Cn_2, Cn_c_Au, Er_i, Er_1, Er_2, Er_c_Au, Q0_i, Q0_1, Q0_2,
+   Q0_c_Au, alfa, e_i, e_1, e_2, e_c_Au, k0_i, k0_1, k0_2, k0_c_Au, lamb_i,
+   lamb_1, lamb_2, lamb_c_Au, td_i, td_1, td_2, td_c_Au, ti_i, ti_1, ti_2,
+   ti_c_Au, tr_i, tr_1, tr_2, tr_c_Au, tv_i, tv_1, tv_2, tv_c_Au, w_i, w_1,
+   w_2, w_c_Au) = Val_ini
+  u_v_ini = (Cn_i*u_Cn/100, Cn_1*u_Cn_1/100, Cn_2*u_Cn_2/100,
+             Cn_c_Au*u_Cn_c_Au/100, Er_i*u_Er/100, Er_1*u_Er_1/100,
+             Er_2*u_Er_2/100, Er_c_Au*u_Er_c_Au/100, Q0_i*u_Q0/100,
+             Q0_1*u_Q0_1/100, Q0_2*u_Q0_2/100, Q0_c_Au*u_Q0_c_Au/100,
+             alfa*u_alfa/100, e_i*u_e/100, e_1*u_e_1/100, e_2*u_e_2/100,
+             e_c_Au*u_e_c_Au/100, k0_i*u_k0/100, k0_1*u_k0_1/100,
+             k0_2*u_k0_2/100, k0_c_Au*u_k0_c_Au/100, lamb_i*u_lamb/100,
+             lamb_1*u_lamb_1/100, lamb_2*u_lamb_2/100, lamb_c_Au*u_lamb_c_Au/100,
+             td_i*u_td/100, td_1*u_td_1/100, td_2*u_td_2/100,
+             td_c_Au*u_tv_c_Au/100, ti_i*u_ti/100, ti_1*u_ti_1/100,
+             ti_2*u_ti_2/100, ti_c_Au*u_ti_c_Au/100, tr_i*u_tr/100,
+             tr_1*u_tr_1/100, tr_2*u_tr_2/100, tr_c_Au*u_tr_c_Au/100,
+             tv_i*u_tv/100, tv_1*u_tv_1/100, tv_2*u_tv_2/100,
+             tv_c_Au*u_tv_c_Au/100, w_i*u_w/100, w_1*u_w_1/100, w_2*u_w_2/100,
+             w_c_Au*u_w_c_Au/100)
+
+
+
+
+
+
 
 def cal_U(Val_ini,u_v_ini):
   (Cn, Cn_1, Cn_2, Cn_c_Au, Er, Er_1, Er_2, Er_c_Au, Q0, Q0_1, Q0_2, Q0_c_Au,
