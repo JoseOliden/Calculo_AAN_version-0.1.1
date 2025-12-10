@@ -374,7 +374,7 @@ def cal_U(Val_ini,u_v_ini):
     simbolos = {str(v): sp.Symbol(str(v)) for v in variables}
     formula_sym = sp.sympify(formula_str)
     # Calcular valor central
-    y_val = float(formula_sym.evalf(subs=valores))
+    y_val = np.float64(formula_sym.evalf(subs=valores))
     u_y_squared = 0
     contribuciones = []
     kkk = 0
@@ -383,7 +383,7 @@ def cal_U(Val_ini,u_v_ini):
         sensibilidad = derivadas[kkk]
         kkk = kkk + 1
         u_i = incertidumbres[var_name]
-        contrib = (float(sensibilidad) * u_i)**2
+        contrib = (np.float64(sensibilidad) * u_i)**2
         u_rel_i = u_i / valores[var_name] if valores[var_name] != 0 else np.nan
         u_y_squared += contrib
     if isinstance(u_y_squared, np.ndarray):
@@ -426,7 +426,7 @@ def cal_U_Aesp(Val_ini,u_v_ini):
     simbolos = {str(v): sp.Symbol(str(v)) for v in variables}
     formula_sym = sp.sympify(formula_str)
     # Calcular valor central
-    y_val = float(formula_sym.evalf(subs=valores))
+    y_val = np.float64(formula_sym.evalf(subs=valores))
     # Derivadas parciales (sensibilidades)
     u_y_squared = 0
     contribuciones = []
@@ -435,7 +435,7 @@ def cal_U_Aesp(Val_ini,u_v_ini):
         var_name = str(v)
         derivada = formula_sym.diff(v)
 
-        sensibilidad = float(derivada.evalf(subs=valores))
+        sensibilidad = np.float64(derivada.evalf(subs=valores))
         u_i = incertidumbres[var_name]
         contrib = (sensibilidad * u_i)**2
         u_rel_i = u_i / valores[var_name] if valores[var_name] != 0 else np.nan
