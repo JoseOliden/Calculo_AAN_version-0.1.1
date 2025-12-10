@@ -197,7 +197,7 @@ elif page == "⚙️ Configuración":
         u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
         st.session_state.u_w = np.float64(u_w)
         u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
-        st.session_state.u_w = np.float64(u_w_Au)
+        st.session_state.u_w_Au = np.float64(u_w_Au)
 
         
     # Comparadores para cálculo de alfa
@@ -312,6 +312,17 @@ elif page == "📊 Procesamiento":
             df_muestra["Net Peak Area Corr"] = Cn_corr_i
             df_muestra["Concentracion (PPM)"] = C*1000000
             st.dataframe(df_muestra)
+
+            # calculo de incertidumbre
+            u_e = st.session_state.u_e
+            u_k0 = st.session_state.u_k0
+            u_w = st.session_state.u_w
+            u_w_c_Au = st.session_state.u_w_Au
+
+            
+            
+            parametros_cal_U(i,df_muestra,u_e,u_k0,u_w,td_i,ti_i,tr_i,tv_i,w_i,  df_comp, df_comp_Au,u_w_c_Au,td_c_Au,ti_c_Au,tr_c_Au,tv_c_Au,w_c_Au, geom )
+
             
             df_ejemplo = pd.DataFrame()
             df_ejemplo["Nucleido"] =  df_muestra["NUCLID"]
