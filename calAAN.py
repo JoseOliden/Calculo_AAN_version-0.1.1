@@ -142,12 +142,33 @@ def conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_
   return C, Cn_corr_i
 
 # ------------------------ Calculo de Incertidumbre ---------------------------#
-def parametros_cal_U(u_e,u_k0,u_w,u_Cn,u_w_c_Au ):
+def parametros_cal_U(df_unico, u_e,u_k0,u_w,u_w_c_Au,geom ):
+  # i es indice el nucleido.
+  # ------------------------------------------------------------------------
+  alfa = 0.226
+  u_alfa = 0
+  # ----------------------- Valores de la muestra --------------------------#
+  Cn_i = df_unico["Net Peak Area Corr"] 
+  Er_i = df_unico["EREF"] 
+  Q0_i = df_unico["Q0"] 
+  Er_i = df_unico["EREF"]
+  if (geom == "50 mm"):
+    e_i = df_unico["EFIGAMMA50"]*df_unico["COI ROSSBACH"] 
+  if (geom == "185 mm"):
+    e_i = df_unico["EFIGAMMA185"]*df_unico["COI GAMMA185"]
+  k0_i = df_unico["K0"]
+  lamb_i = np.log(2)/df_unico["t(1/2) s"]
+  td_i = 0
+  ti_i = 0
+  tr_i = 0
+  tv_i = 0
+  w_i = 0
   # -------------------- Incertidumbre de muestra -------------------------------#
   #u_e = 3 # se ingresa
   #u_k0 = 2.8 # se ingresa 
   #u_w = 0.01 # se ingresa
-  #u_Cn = 1 # se calcula para cada elemento. de los Cn/u_Cn_v
+  u_Cn_v = df_unico["Net Peak Uncert"] # valor
+  u_Cn = 100*u_Cn_v/Cn_i # %
   u_Er = 0
   u_Q0 = 0
   u_lamb = 0
@@ -194,11 +215,11 @@ def parametros_cal_U(u_e,u_k0,u_w,u_Cn,u_w_c_Au ):
   u_tv_c_Au = 0.0   # Tiempo de vivo
     
 
-  (Cn_i, Cn_1, Cn_2, Cn_c_Au, Er_i, Er_1, Er_2, Er_c_Au, Q0_i, Q0_1, Q0_2,
-   Q0_c_Au, alfa, e_i, e_1, e_2, e_c_Au, k0_i, k0_1, k0_2, k0_c_Au, lamb_i,
-   lamb_1, lamb_2, lamb_c_Au, td_i, td_1, td_2, td_c_Au, ti_i, ti_1, ti_2,
-   ti_c_Au, tr_i, tr_1, tr_2, tr_c_Au, tv_i, tv_1, tv_2, tv_c_Au, w_i, w_1,
-   w_2, w_c_Au) = Val_ini
+  Val_ini = (Cn_i, Cn_1, Cn_2, Cn_c_Au, Er_i, Er_1, Er_2, Er_c_Au, Q0_i, Q0_1, Q0_2,
+             Q0_c_Au, alfa, e_i, e_1, e_2, e_c_Au, k0_i, k0_1, k0_2, k0_c_Au, lamb_i,
+             lamb_1, lamb_2, lamb_c_Au, td_i, td_1, td_2, td_c_Au, ti_i, ti_1, ti_2,
+             ti_c_Au, tr_i, tr_1, tr_2, tr_c_Au, tv_i, tv_1, tv_2, tv_c_Au, w_i, w_1,
+             w_2, w_c_Au)
   u_v_ini = (Cn_i*u_Cn/100, Cn_1*u_Cn_1/100, Cn_2*u_Cn_2/100,
              Cn_c_Au*u_Cn_c_Au/100, Er_i*u_Er/100, Er_1*u_Er_1/100,
              Er_2*u_Er_2/100, Er_c_Au*u_Er_c_Au/100, Q0_i*u_Q0/100,
@@ -215,9 +236,7 @@ def parametros_cal_U(u_e,u_k0,u_w,u_Cn,u_w_c_Au ):
              tv_c_Au*u_tv_c_Au/100, w_i*u_w/100, w_1*u_w_1/100, w_2*u_w_2/100,
              w_c_Au*u_w_c_Au/100)
 
-  return 0
-
-
+  return Val_ini, u_v_ini
 
 
 
@@ -475,8 +494,6 @@ def corr_Cn(i, df_muestra):
     Interf = df_unico["INTERF"]
     E_Interf =np.float64(df_unico["E_INTERF"])
     FC = np.float64(df_unico["FC_GAMM"])
-    st.write(Interf)
-    st.write(E_Interf)
 
     if (Interf == "N_A"):
       return Area
