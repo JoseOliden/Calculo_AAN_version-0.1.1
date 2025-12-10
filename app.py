@@ -291,7 +291,10 @@ elif page == "📊 Procesamiento":
             st.write(f"**alfa:** {alfa}")
             st.write(f"**f:** {f}")
 
-
+            # ---------forzar valores -------
+            alfa = 0.226
+            f = 24
+            
             # Calculo de la concentración
             df_muestra = df_filtrado_Nuclidos 
             w = st.session_state.masa_muestra
