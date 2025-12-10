@@ -212,9 +212,9 @@ def parametros_cal_U(i,df_muestra,u_e,u_k0,u_w,td_i,ti_i,tr_i,tv_i,w_i,  df_comp
   Er_c_Au = np.float64(df_comp_Au["EREF"]) 
   Q0_c_Au = np.float64(df_comp_Au["Q0"]) 
   if (geom == "50 mm"):
-    e_c_Au = np.float64(df_comp_Au["EFIGAMMA50"])*np.float64(df_unico["COI ROSSBACH"]) 
+    e_c_Au = np.float64(df_comp_Au["EFIGAMMA50"])*np.float64(df_comp_Au["COI ROSSBACH"]) 
   if (geom == "185 mm"):
-    e_c_Au = np.float64(df_comp_Au["EFIGAMMA185"])*np.float64(df_unico["COI GAMMA185"])
+    e_c_Au = np.float64(df_comp_Au["EFIGAMMA185"])*np.float64(df_comp_Au["COI GAMMA185"])
   k0_c_Au = np.float64(df_comp_Au["K0"])
   lamb_c_Au = np.log(2)/np.float64(df_comp_Au["t(1/2) s"])
 
