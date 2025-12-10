@@ -317,7 +317,7 @@ elif page == "📊 Procesamiento":
             u_w = st.session_state.u_w
             u_w_c_Au = st.session_state.u_w_Au
             df_comp = st.session_state.df_comparadores_alfa_f
-
+            
 
             Inc_valor = np.zeros(len(df_muestra))
             Inc_por = np.zeros(len(df_muestra))
