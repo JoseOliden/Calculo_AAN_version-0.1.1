@@ -331,7 +331,7 @@ elif page == "📊 Procesamiento":
                 Inc_por[i] = u_y_por
                 x_red, u_red = redondear_con_incert(1000000*C[i], 1000000*u_y, sig_inc = 3)
                 C_red[i] = x_red
-                Inc_valor_red[i] = u_y_por
+                Inc_valor_red[i] = u_red
                 
             df_ejemplo = pd.DataFrame()
             df_ejemplo["Nucleido"] =  df_muestra["NUCLID"]
