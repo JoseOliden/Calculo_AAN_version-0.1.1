@@ -250,12 +250,8 @@ elif page == "📊 Procesamiento":
 
             # Procesa comparador de Au y sus datos
             df_Au = Selecion_Nucleidos_Au(st.session_state["df_au_resultado"], st.session_state["df_file"],st.session_state["tolerancia"])
-            st.success("Compardor de Au")
-            st.dataframe(df_Au)
             # Hallar los nucleidos y sus datos
-            st.success("Nucleidos encontrados en la muestra")
             df_filtrado_Nuclidos = Selecion_Nucleidos_muestra(st.session_state["df_resultado"],st.session_state["ref_files"], st.session_state["df_file"], st.session_state["tolerancia"])
-            st.dataframe(df_filtrado_Nuclidos)
 
             #Tiempos de irradiación y decaimiento de la muestra
             # Irraciación: (fecha_fin, hora_fin) - (fecha_ini, hora_ini)
@@ -282,12 +278,11 @@ elif page == "📊 Procesamiento":
             # Cálculo de f y alfa
             st.dataframe(st.session_state["df_comparadores_alfa_f"])
             alfa, f = cal_alfa(st.session_state["df_comparadores_alfa_f"])
-            st.write(f"**alfa:** {alfa}")
-            st.write(f"**f:** {f}")
-
             # ---------forzar valores -------
             alfa = 0.226
             f = 34
+            st.write(f"**alfa:** {alfa}")
+            st.write(f"**f:** {f}")
             
             # Calculo de la concentración
             df_muestra = df_filtrado_Nuclidos.copy() 
@@ -298,7 +293,7 @@ elif page == "📊 Procesamiento":
             tr_i = st.session_state["t_real"]
             df_comp_Au = df_Au.copy()
             w_Au = st.session_state["masa_comparador_au"]
-            #jojo
+    
             td_c_Au = t_dec_Au 
             ti_c_Au = t_irr
             tv_c_Au = st.session_state["t_vivo_au"]
@@ -308,7 +303,6 @@ elif page == "📊 Procesamiento":
             C, Cn_corr_i = conc(df_muestra, w,td_i,ti_i,tv_i,tr_i, df_comp_Au, w_Au,td_c_Au,ti_c_Au,tv_c_Au,tr_c_Au, alfa, f, geom)
             df_muestra["Net Peak Area Corr"] = Cn_corr_i
             df_muestra["Concentracion (PPM)"] = C*1000000
-            st.dataframe(df_muestra)
 
             # calculo de incertidumbre
             u_e = st.session_state["u_e"]
@@ -316,14 +310,12 @@ elif page == "📊 Procesamiento":
             u_w = st.session_state["u_w"]
             u_w_c_Au = st.session_state["u_w_Au"]
             df_comp = st.session_state["df_comparadores_alfa_f"]
-            st.dataframe(df_comp)
 
             Inc_valor = np.zeros(len(df_muestra))
             Inc_por = np.zeros(len(df_muestra))
             Inc_valor_red = np.zeros(len(df_muestra))
             C_red = np.zeros(len(df_muestra))
             for i in range(len(df_muestra)):
-                st.write(i)
                 Val_ini,u_v_ini = parametros_cal_U(i,df_muestra,u_e,u_k0,u_w,td_i,ti_i,tr_i,tv_i,w,  df_comp, df_comp_Au,u_w_c_Au,td_c_Au,ti_c_Au,tr_c_Au,tv_c_Au,w_Au, geom,alfa )
                 u_y, y_val, u_y_por, simbolos = cal_U(Val_ini,u_v_ini)
                 Inc_valor[i] = 1000000*u_y
