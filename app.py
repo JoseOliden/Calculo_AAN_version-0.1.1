@@ -71,7 +71,7 @@ if page == "📁 Carga de Datos":
             if rpt_file:
                 df_resultado = procesar_RPT(rpt_file)
                 st.dataframe(df_resultado)
-                st.session_state.["df_resultado"] = df_resultado
+                st.session_state["df_resultado"] = df_resultado
     
     with col2:
         st.subheader("📄 Archivo .k0s de Muestra")
@@ -80,10 +80,10 @@ if page == "📁 Carga de Datos":
             st.success(f"✅ {k0s_file.name} cargado")
             if k0s_file:
                 fecha, hora, t_vivo, t_real = extraer_DATE_MEA_MEAS_TIM(k0s_file)
-                st.session_state.["fecha"] = fecha
-                st.session_state.["hora"] = hora
-                st.session_state.["t_vivo"] = np.float64(t_vivo)
-                st.session_state.["t_real"] = np.float64(t_real)
+                st.session_state["fecha"] = fecha
+                st.session_state["hora"] = hora
+                st.session_state["t_vivo"] = np.float64(t_vivo)
+                st.session_state["t_real"] = np.float64(t_real)
                 
                 st.subheader("📌 Datos extraídos del archivo")
                 st.write(f"**Fecha de medición:** {fecha}")
@@ -98,7 +98,7 @@ if page == "📁 Carga de Datos":
             st.success(f"✅ {rpt_au_file.name} cargado")
             if rpt_au_file:
                 df_au_resultado = procesar_RPT(rpt_au_file)
-                st.session_state.["df_au_resultado"] = df_au_resultado
+                st.session_state["df_au_resultado"] = df_au_resultado
                 st.dataframe(df_au_resultado)
     
     with col4:
@@ -107,10 +107,10 @@ if page == "📁 Carga de Datos":
         if k0s_au_file:
             st.success(f"✅ {k0s_au_file.name} cargado")
             fecha_au, hora_au, t_vivo_au, t_real_au = extraer_DATE_MEA_MEAS_TIM(k0s_au_file)
-            st.session_state.["fecha_au"] = fecha_au
-            st.session_state.["hora_au"] = hora_au
-            st.session_state.["t_vivo_au"] = np.float64(t_vivo_au)
-            st.session_state.["t_real_au"] = np.float64(t_real_au)
+            st.session_state["fecha_au"] = fecha_au
+            st.session_state["hora_au"] = hora_au
+            st.session_state["t_vivo_au"] = np.float64(t_vivo_au)
+            st.session_state["t_real_au"] = np.float64(t_real_au)
             
             st.subheader("📌 Datos extraídos del archivo")
             st.write(f"**Fecha de medición:** {fecha_au}")
@@ -128,7 +128,7 @@ if page == "📁 Carga de Datos":
             st.success(f"✅ Base de datos cargada")
             df_file = pd.read_excel(db_file)
             st.dataframe(df_file)
-            st.session_state.["df_file"] = df_file
+            st.session_state["df_file"] = df_file
 
     with col22:
         # Librería de Nucléidos
@@ -139,7 +139,7 @@ if page == "📁 Carga de Datos":
             st.success(f"✅ Archivo cargado")
             ref_files = pd.read_excel(ref_files)
             st.dataframe(ref_files)
-            st.session_state.["ref_files"] = ref_files
+            st.session_state["ref_files"] = ref_files
 
 # ============================================
 # SECCIÓN 2: CONFIGURACIÓN
@@ -152,18 +152,18 @@ elif page == "⚙️ Configuración":
     with col1:
         st.subheader("⚖️ Parámetros de Masa")
         masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
-        st.session_state.["masa_muestra"] = np.float64(masa_muestra)
+        st.session_state["masa_muestra"] = np.float64(masa_muestra)
         masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
-        st.session_state.["masa_comparador_au"] = np.float64(masa_comparador_au)/1000000
+        st.session_state["masa_comparador_au"] = np.float64(masa_comparador_au)/1000000
         
         st.subheader("📐 Geometría")
         geometria = st.radio("Geometría de detección:", ["50 mm", "185 mm"])
         geometria_val = "50" if geometria == "50 mm" else "185"
-        st.session_state.["geometria"] = geometria
+        st.session_state["geometria"] = geometria
         
         st.subheader("⏰ Tolerancia de Energía")
         tolerancia = st.slider("Tolerancia de energía (keV):", min_value=0.1, max_value=5.0, value=1.5, step=0.1)
-        st.session_state.["tolerancia"] = np.float64(tolerancia)    
+        st.session_state["tolerancia"] = np.float64(tolerancia)    
     
     with col2:
         st.subheader("🕐 Tiempos de Irradiación")
