@@ -250,7 +250,7 @@ elif page == "📊 Procesamiento":
             #}
 
             # Procesa comparador de Au y sus datos
-            df_Au = Selecion_Nucleidos_Au(st.session_state.["df_au_resultado"], st.session_state.["df_file]",st.session_state.["tolerancia"])
+            df_Au = Selecion_Nucleidos_Au(st.session_state.["df_au_resultado"], st.session_state.["df_file"],st.session_state.["tolerancia"])
             st.success("Compardor de Au")
             st.dataframe(df_Au)
             # Hallar los nucleidos y sus datos
