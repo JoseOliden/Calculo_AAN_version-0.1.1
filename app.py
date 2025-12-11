@@ -194,7 +194,7 @@ elif page == "⚙️ Configuración":
         st.session_state["u_k0"] = np.float64(u_k0)
         u_e = st.number_input("Incertidumbre eficiencia de la muestra (%):", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
         st.session_state["u_e"] = np.float64(u_e)
-        u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
+        u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.001)
         st.session_state["u_w"] = np.float64(u_w)
         u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
         st.session_state["u_w_Au"] = np.float64(u_w_Au)
