@@ -149,7 +149,6 @@ def parametros_cal_U(i,df_muestra,u_e,u_k0,u_w,td_i,ti_i,tr_i,tv_i,w_i,  df_comp
   u_alfa = 0
   # ----------------------- Valores de la muestra --------------------------#
   Cn_i = np.float64(df_unico["Net Peak Area Corr"])
-  st.write(Cn_i)
   Er_i = np.float64(df_unico["EREF"]) 
   Q0_i = np.float64(df_unico["Q0"]) 
   if (geom == "50 mm"):
@@ -548,7 +547,6 @@ def corr_Cn(i, df_muestra):
       return Area
     df_filtrado = df_muestra[(df_muestra["Identidad_Verificada_Energia"] == Interf) & (df_muestra["EGKEV"].between(E_Interf - delta, E_Interf + delta))]
     if df_filtrado.empty:
-      st.success("No se encontró inteferente ")
       return Area
 
     E_in_conf = df_filtrado.iloc[0]["Net Peak Area"]
