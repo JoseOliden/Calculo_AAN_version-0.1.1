@@ -227,9 +227,11 @@ elif page == "⚙️ Configuración":
 
     with col2:
         st.subheader("📊 Parámetros de Incertidumbre")
-        u_k0 = st.number_input("Incertidumbre k0 de la muestra (%):", min_value=0.0, max_value=10.0, value=2.8, step=0.1)
+        u_k0 = 2.8
+        u_e = 3.0
+        st.write(f"**Incertidumbre k0 de la muestra (%):** {u_k0}")
+        st.write(f"**Incertidumbre eficiencia de la muestra (%):** {u_k0}")
         st.session_state["u_k0"] = np.float64(u_k0)
-        u_e = st.number_input("Incertidumbre eficiencia de la muestra (%):", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
         st.session_state["u_e"] = np.float64(u_e)
 
     with col3:
