@@ -211,8 +211,6 @@ elif page == "⚙️ Configuración":
             #hora_fin = st.time_input("Hora fin irradiación:", value=datetime.strptime("09:45:00", "%H:%M:%S").time(),step=timedelta(seconds=1))
             hora_fin_Au= st.text_input("Hora fin irradiación del comparador (HH:MM:SS):", value="09:45:00")
             st.session_state["hora_fin_Au"] = hora_fin_Au
-        
-        
 
     col1, col2, col3 = st.columns(3)
     
@@ -234,7 +232,7 @@ elif page == "⚙️ Configuración":
         st.session_state["u_e"] = np.float64(u_e)
 
     with col3:
-        
+        uno = 1
         
 
 
