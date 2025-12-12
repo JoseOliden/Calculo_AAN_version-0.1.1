@@ -373,7 +373,8 @@ elif page == "📊 Procesamiento":
                     df_ejemplo["Área Neto"] = df_muestra["Net Peak Area"]
                     df_ejemplo["Concentración (ppm)"] = C_red
                     df_ejemplo["Incertidumbre (ppm)"] = Inc_valor_red
-                    df_ejemplo["% Incertidumbre"] = Inc_por         
+                    df_ejemplo["% Incertidumbre"] = Inc_por 
+                    df_ejemplo = df_ejemplo.dropna()
                     time.sleep(1.0)
 
             st.success("✅ Procesamiento completado!")
