@@ -10,10 +10,6 @@ st.set_page_config(
     page_icon="🔬",
     layout="wide"
 )
-st.image(
-    "https://github.com/JoseOliden/Calculo_AAN_v2/blob/main/LOGO_IPEN.jpg",
-    width=300,
-)
 
 # CSS personalizado
 st.markdown("""
