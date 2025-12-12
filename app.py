@@ -150,11 +150,19 @@ elif page == "⚙️ Configuración":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.subheader("⚖️ Parámetros de Masa")
-        masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
-        st.session_state["masa_muestra"] = np.float64(masa_muestra)
-        masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
-        st.session_state["masa_comparador_au"] = np.float64(masa_comparador_au)/1000000   
+        masas, ince = st.columns(2)
+        with masas:
+            st.subheader("⚖️ Parámetros de Masa")
+            masa_muestra = st.number_input("Masa de la muestra (g):", min_value=0.0, value=0.2817, step=0.0001, format="%.4f")
+            st.session_state["masa_muestra"] = np.float64(masa_muestra)
+            masa_comparador_au = st.number_input("Masa del comparador Au (μg):", min_value=0.0, value=16.82, step=0.01, format="%.2f")
+            st.session_state["masa_comparador_au"] = np.float64(masa_comparador_au)/1000000
+
+        with ince:
+            u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.001)
+            st.session_state["u_w"] = np.float64(u_w)
+            u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
+            st.session_state["u_w_Au"] = np.float64(u_w_Au)
     
     with col2:
         st.subheader("🕐 Tiempos de Irradiación de la muestra")
@@ -214,21 +222,20 @@ elif page == "⚙️ Configuración":
         geometria_val = "50" if geometria == "50 mm" else "185"
         st.session_state["geometria"] = geometria
 
-    with col2:
         st.subheader("⏰ Tolerancia de Energía")
         tolerancia = st.slider("Tolerancia de energía (keV):", min_value=0.1, max_value=5.0, value=1.5, step=0.1)
-        st.session_state["tolerancia"] = np.float64(tolerancia) 
+        st.session_state["tolerancia"] = np.float64(tolerancia)
 
-    with col3:
+    with col2:
         st.subheader("📊 Parámetros de Incertidumbre")
         u_k0 = st.number_input("Incertidumbre k0 de la muestra (%):", min_value=0.0, max_value=10.0, value=2.8, step=0.1)
         st.session_state["u_k0"] = np.float64(u_k0)
         u_e = st.number_input("Incertidumbre eficiencia de la muestra (%):", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
         st.session_state["u_e"] = np.float64(u_e)
-        u_w = st.number_input("Incertidumbre masa de la muestra (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.001)
-        st.session_state["u_w"] = np.float64(u_w)
-        u_w_Au = st.number_input("Incertidumbre masa del comparador de Au (%):", min_value=0.0, max_value=5.0, value=0.01, step=0.01)
-        st.session_state["u_w_Au"] = np.float64(u_w_Au)
+
+    with col3:
+        
+        
 
 
 # ============================================
