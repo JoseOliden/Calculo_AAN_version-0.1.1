@@ -200,15 +200,7 @@ elif page == "⚙️ Configuración":
         st.session_state["u_w_Au"] = np.float64(u_w_Au)
 
         
-    # Comparadores para cálculo de alfa
-    st.subheader("🔬 Comparadores para Cálculo de f y α")
-    st.info("ℹ️ Los comparadores Au, Co y Mo se utilizarán para calcular los parámetros f y α")
-    df_comparadores_alfa_f = crear_df_comparadores()
-    if "df_comparadores_alfa_f" not in st.session_state:
-        st.session_state["df_comparadores_alfa_f"] = crear_df_comparadores()
-    else:
-        st.session_state["df_comparadores_alfa_f"]
-        st.dataframe(df_comparadores_alfa_f)
+
     
 # ============================================
 # SECCIÓN 3: PROCESAMIENTO
@@ -248,6 +240,15 @@ elif page == "📊 Procesamiento":
             #    '% Incertidumbre': [4.19, 16.63, 9.22, 4.30, 4.25]
             #}
 
+                # Comparadores para cálculo de alfa
+            
+            df_comparadores_alfa_f = crear_df_comparadores()
+            if "df_comparadores_alfa_f" not in st.session_state:
+                st.session_state["df_comparadores_alfa_f"] = crear_df_comparadores()
+            else:
+                st.session_state["df_comparadores_alfa_f"]
+                st.dataframe(df_comparadores_alfa_f)
+            
             # Procesa comparador de Au y sus datos
             df_Au = Selecion_Nucleidos_Au(st.session_state["df_au_resultado"], st.session_state["df_file"],st.session_state["tolerancia"])
             # Hallar los nucleidos y sus datos
