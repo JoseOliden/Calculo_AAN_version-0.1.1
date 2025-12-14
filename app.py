@@ -44,7 +44,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.image(
-    "LOGO_IPEN.jpg",
+    "banner.jpg",
     width=100,
 )
 # Título principal
