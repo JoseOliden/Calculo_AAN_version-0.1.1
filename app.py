@@ -64,7 +64,7 @@ if page == "📁 Carga de Datos":
     st.markdown('<h2 class="section-header">📁 Carga de Archivos</h2>', unsafe_allow_html=True)
     
     # Crear columnas para la carga de archivos
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(3)
     
     with col1:
         st.subheader("Archivos de la muestra")
@@ -93,11 +93,6 @@ if page == "📁 Carga de Datos":
                 st.write(f"**Tiempo real (s):** {t_real}")
     
     with col2:
-        st.subheader("Selecionar comparador")       
-        Tipo_comp = st.radio("Seleccionar el comparador:", ["Au", "Al", "Na"])
-        st.session_state["Tipo_comp"] = Tipo_comp
-    
-    with col3:
         st.subheader("Archivos del comparador")
         rpt_au_file = st.file_uploader("Subir archivo .RPT", type=['RPT', 'RPT'], key="rpt_au")
         if rpt_au_file:
@@ -121,8 +116,7 @@ if page == "📁 Carga de Datos":
             st.write(f"**Hora de medición:** {hora_au}")
             st.write(f"**Tiempo vivo (s):** {t_vivo_au}")
             st.write(f"**Tiempo real (s):** {t_real_au}")
-    
-                
+          
     col21, col22 = st.columns(2)
 
     with col21:
@@ -283,8 +277,7 @@ elif page == "📊 Procesamiento":
                         st.session_state["df_comparadores_alfa_f"]
             
                     # Procesa comparador de Au y sus datos
-                    Tipo_comp = st.session_state["Tipo_comp"]  
-                    df_Au = Selecion_Nucleidos_Au(st.session_state["df_au_resultado"], st.session_state["df_file"],st.session_state["tolerancia"],Tipo_comp)
+                    df_Au = Selecion_Nucleidos_Au(st.session_state["df_au_resultado"], st.session_state["df_file"],st.session_state["tolerancia"])
                     # Hallar los nucleidos y sus datos
                     df_filtrado_Nuclidos = Selecion_Nucleidos_muestra(st.session_state["df_resultado"],st.session_state["ref_files"], st.session_state["df_file"], st.session_state["tolerancia"])
 
