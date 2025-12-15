@@ -64,7 +64,7 @@ if page == "📁 Carga de Datos":
     st.markdown('<h2 class="section-header">📁 Carga de Archivos</h2>', unsafe_allow_html=True)
     
     # Crear columnas para la carga de archivos
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns(2)
     
     with col1:
         st.subheader("Archivos de la muestra")
