@@ -41,7 +41,7 @@ def procesar_RPT(rpt_file):
     patrones_excluir = ("Peak", "M =", "m =", "F =", "Error")
     df = df[~df["sin_espacios"].str.startswith(patrones_excluir)]
 
-    # 6. Eliminar líneas que empiezan con exactamente 3 espacios
+    # 6. Eliminar líneas que empiezan con exactamente 12 espacios
     df = df[~df["linea"].str.startswith("            ")]
 
     # 7. Eliminar líneas vacías o solo con espacios
