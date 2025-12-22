@@ -316,7 +316,7 @@ elif page == "📊 Procesamiento":
 
                     # Cálculo de f y alfa
                     st.dataframe(st.session_state["df_comparadores_alfa_f"])
-                    st.write(len(st.session_state["df_comparadores_alfa_f"]["k0"]))
+                    st.write(type(len(st.session_state["df_comparadores_alfa_f"]["k0"])))
                     alfa, f = cal_alfa(st.session_state["df_comparadores_alfa_f"])
                     ##
                     # ---------forzar valores -------
