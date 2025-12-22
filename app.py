@@ -272,10 +272,10 @@ elif page == "📊 Procesamiento":
             
                     df_comparadores_alfa_f = crear_df_comparadores()
                     st.session_state["df_comparadores_alfa_f"] = df_comparadores_alfa_f
-                    if "df_comparadores_alfa_f" not in st.session_state:
-                        st.session_state["df_comparadores_alfa_f"] = crear_df_comparadores()
-                    else:
-                        st.session_state["df_comparadores_alfa_f"] = df_comparadores_alfa_f
+                    #if "df_comparadores_alfa_f" not in st.session_state:
+                    #    st.session_state["df_comparadores_alfa_f"] = crear_df_comparadores()
+                    #else:
+                    #    st.session_state["df_comparadores_alfa_f"] = df_comparadores_alfa_f
             
                     # Procesa comparador de Au y sus datos
                     
